@@ -15,7 +15,6 @@ senha_secreta = app.config['SECRET_KEY']
 def generate_token(user_id, email):
     payload = {'id_usuario': user_id, 'email':email}
     token = jwt.encode(payload, senha_secreta, algorithm='HS256')
-    # PyJWT 2.x retorna string, se estiver usando bytes, use .decode("utf-8")
     if isinstance(token, bytes):
         token = token.decode("utf-8")
     return token
